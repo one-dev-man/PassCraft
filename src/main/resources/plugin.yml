@@ -1,0 +1,130 @@
+name: PassCraft
+version: 0.0.1-dev
+main: org.onedevman.mc.plugins.passcraft.PluginMain
+api-version: 1.13
+depend: [ProtocolLib]
+
+commands:
+  login:
+    description: 'Allows a player to login him on the server.'
+    permission: passcraft.commands.login
+    usage: '§cSyntax error : /login password <password> or /login discord'
+
+  register:
+    description: 'Allows a player to register him on the server.'
+    permission: passcraft.commands.register
+    usage: '§cSyntax error : /register password <password> or /register discord <discord tag>'
+
+  unregister:
+    description: 'Allows a player to unregister him on the server.'
+    permission: passcraft.commands.unregister
+    usage: '§cSyntax error : /unregister password <password> or /unregister discord'
+
+  #
+
+  passcraft:
+    description: 'Allows to change/view the current plugin configuration and reload the plugin.'
+    usage: '§cSyntax error : /passcraft reload | /passcraft config get <key> | /passcraft get <key> <value>'
+
+  passcraft-db:
+    description: 'Sends update/query requests to the plugin used database.'
+    usage: '§cSyntax error : /passcraft-db [update|query] <sql request>'
+
+  #
+
+  vanish:
+    description: 'Turn on vanish mode.'
+    usage: '§cSyntax error : /vanish or /vanish phantom'
+
+  unvanish:
+    description: 'Turn off vanish mode.'
+    usage: '§cSyntax error : /unvanish or /unvanish force'
+
+#
+
+permissions:
+  passcraft.*:
+    description: 'Gives all PassCraft plugin permissions.'
+    children:
+      passcraft.commands.*: true
+
+  passcraft.commands.*:
+    description: 'Gives all PassCraft commands permissions.'
+    children:
+      passcraft.commands.login: true
+      passcraft.commands.register: true
+      passcraft.commands.unregister: true
+      passcraft.commands.passcraft.*: true
+      passcraft.commands.passcraft-db.*: true
+      passcraft.commands.vanish: true
+      passcraft.commands.vanish.other: true
+      passcraft.commands.unvanish: true
+      passcraft.commands.unvanish.other: true
+
+  #
+
+  passcraft.commands.login:
+    description: 'Allows to use the /login command.'
+    default: true
+
+  passcraft.commands.register:
+    description: 'Allows to use the /register command.'
+    default: true
+
+  passcraft.commands.unregister:
+    description: 'Allows to use the /unregister command.'
+    default: true
+
+  #
+
+  passcraft.commands.passcraft.*:
+    description: 'Allows to use the /passcraft command.'
+    children:
+      passcraft.commands.passcraft.config.reload: true
+
+  passcraft.commands.passcraft.config.reload:
+    description: 'Allows to use the /passcraft command to reload the plugin config.'
+    default: op
+
+  #
+
+  passcraft.commands.passcraft-db.*:
+    description: 'Allows to use the /passcraft-db command to do some SQL update and query requests on the plugin used database.'
+    children:
+      passcraft.commands.passcraft-db.update: true
+      passcraft.commands.passcraft-db.query: true
+
+  passcraft.commands.passcraft-db.update:
+    description: 'Allows to use the /passcraft-db command to do some SQL update requests on the plugin used database.'
+    default: op
+  passcraft.commands.passcraft-db.query:
+    description: 'Allows to use the /passcraft-db command to do some SQL query requests on the plugin used database.'
+    default: op
+
+  #
+
+  passcraft.commands.vanish:
+    description: 'Allows to use the /vanish command from PassCraft.'
+    default: op
+
+  passcraft.commands.vanish.other:
+    description: 'Allows to use the /vanish command from PassCraft on another player.'
+    default: op
+
+  passcraft.commands.vanish.phantom:
+    description: 'Allows to use the /vanish command from PassCraft in phantom mode.'
+    default: op
+
+  passcraft.commands.vanish.phantom.other:
+    description: 'Allows to use the /vanish command from PassCraft in phantom mode on another player.'
+    default: op
+
+  #
+
+  passcraft.commands.unvanish:
+    description: 'Allows to use the /unvanish command from PassCraft.'
+    default: op
+
+  passcraft.commands.unvanish.other:
+    description: 'Allows to use the /unvanish command from PassCraft on another player.'
+    default: op
