@@ -20,7 +20,7 @@ TASK_CP2TESTSERV='remote "rm '"$(private.REMOTE_TEST_SERVER_DIRECTORY)"'/PassCra
 
 # 
 
-TASK_ROUTINE='sync.sh clean sync build cp2testserv'
+TASK_BUILD_ROUTINE='sync.sh clean sync build cp2testserv'
 
 # 
 
@@ -47,6 +47,6 @@ fi
 
 TASK_DLDEST='read -p "Destination file to download : " dlfp ; scp -i '"'""$SSH_KEY""'"' "'"$DESTINATION"'/$dlfp" "'"$DOWNLOADS_DIRECTORY"'"'
 
-TASK_DLDEST_COMPILED='scp -i '"'""$SSH_KEY""'"' "'"$DESTINATION"'/target/'"$COMPILED_ARCHIVE_NAME"'" "'"$DOWNLOADS_DIRECTORY"'"'
+TASK_DLDEST_BUILD='scp -i '"'""$SSH_KEY""'"' "'"$DESTINATION"'/target/'"$COMPILED_ARCHIVE_NAME"'" "'"$DOWNLOADS_DIRECTORY"'"'
 
 TASK_CLEAN_DLDEST='$(cd "'"$DOWNLOADS_DIRECTORY"'" ; ls -A | xargs rm -rf)'
