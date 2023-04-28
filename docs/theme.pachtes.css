@@ -1,0 +1,24 @@
+
+* {
+    --
+}
+
+body, main > .sidebar, input {
+    transition:
+        background-color calc(1s / 1),
+        color calc(1s / 1);
+}
+
+table {
+    border: 0px solid !important;
+}
+
+th, td {
+    border: 1px solid var(--borderColor) !important;
+}
+
+th:empty, td:empty,
+tr:has(> th:empty), tr:has(> td:empty) {
+    border: 0px solid !important;
+    background-color: transparent !important;
+}
