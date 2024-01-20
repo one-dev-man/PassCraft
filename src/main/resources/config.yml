@@ -1,0 +1,109 @@
+# ╔═════════════════════════╗
+# ║ PASSCRAFT CONFIGURATION ║
+# ╚═════════════════════════╝
+
+# |
+
+authentication:
+  chest-interface:
+    enabled: true
+
+  premium:
+    # /!\ WARNING : this authentication mode may cause problems with UUID's.
+    # If you enable this option, premium players will have their premium UUID
+    # Else, they will have an "offline-mode" UUID.
+    # So be careful if you use this mode.
+    enabled: false
+
+  discord:
+    enabled: true
+    bot:
+      token: ''
+      requests-timeout-delay: 120 # in seconds
+
+  unregistered-kick-delay: 2 # in seconds
+  reconnection-delay: 45 # in seconds
+  authentication-timeout-kick-delay: 120 # in seconds
+
+# |
+
+database:
+  system: 'sqlite' # SQLite -> 'sqlite' | MySQL -> 'mysql'
+
+  sqlite:
+    path: '%datafolder%/passcraft.db'
+
+  mysql:
+    hostname: ''
+    port: 3306
+    database-name: ''
+    username: ''
+    password: ''
+
+  tables:
+    passwords:
+      name: 'passcraft'
+      columns:
+        user: 'user' # PRIMARY
+        password: 'password'
+    discords:
+      name: 'passcraft'
+      columns:
+        user: 'user' # PRIMARY
+        discord: 'discord'
+
+# |
+
+messages:
+  must-authenticate-notification: "%prefix% Please sign in before joining the server. Use §e/login§7 or §e/register§7 if you're not registered yet."
+
+  invalid-password-format: '%prefix% Invalid password : your password must contains at least 4 characters and no space.'
+
+  not-password-registered: '%prefix% Your account is not registered with a password on the server.'
+  discord-not-linked: '%prefix% Your account is not linked to a discord account on the server.'
+  discord-user-not-found: "%prefix% The specified discord account hasn't been found."
+
+  already-password-registered: '%prefix% §cYour account is already registered with a password on the server.'
+  discord-already-linked: '%prefix% §cYour account is already linked to a discord account on the server.'
+  discord-already-used: '%prefix% This discord account is already used by another player.'
+
+  register-success: "%prefix% §aYou're successfully registered !"
+  register-failed: '%prefix% §cAn error happened while registering your account. Please, contact an operator to fix the issue.'
+
+  discord-linking-success: '%prefix% §aYour discord account has been successfully linked !'
+  discord-unlinking-success: '%prefix% §aYour discord account has been successfully unlinked !'
+
+  discord-linking-refused: '%prefix% §cLinking request rejected.'
+
+  discord-linking-failed: '%prefix% §cAn error happened while linking your discord account. Please, contact an administrator to solve the issue.'
+  discord-unlinking-failed: '%prefix% §cAn error happened while unlinking your discord account. Please, contact an administrator to solve the issue.'
+
+  discord-request: '%prefix% Now you will recieve a message from §e%discord-bot%§7 on discord.'
+  discord-request-timed-out: '%prefix% Discord request timed out.'
+
+  unregister-success: "%prefix% §aYou're successfully unregistered ! You'll be kicked in §e%#authentication.unregistered-kick-delay%§a seconds."
+  unregister-failed: '%prefix% §cAn error happened while unregistering your account. Please, contact an operator to fix the issue.'
+  unregister-kick: "§cYou must reconnect and register."
+
+  login-success: "%prefix% §aYou're successfully logged in !"
+  already-logged: "%prefix% You're already logged."
+  login-failed: '%prefix% §cAn error happened while logging in your account. Please, contact an operator to fix the issue.'
+
+  wrong-password: '%prefix% Wrong password.'
+
+  discord-auth-disabled: '%prefix% Discord authentication is currently disabled.'
+
+  authentication-timed-out-kick: '§cAuthentication timed out : too long to connect.'
+
+  registration-required: '%prefix% §cYou need to be registered to perform this action.'
+  login-required: '%prefix% §cYou need to be logged to perform this action.'
+
+# |
+
+config-tokens:
+  # datafolder - native token
+  # discord-bot - contextual token
+
+  prefix: '§8[§7Pass§cCraft§8]§7'
+
+# |
